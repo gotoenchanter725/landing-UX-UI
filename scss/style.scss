@@ -1,0 +1,367 @@
+// variable
+$main-bg: #e6f0ff;
+$btn-bg: #0f1b4c;
+$text: #687690;
+$text-bold: #000336;
+$link-blue: #44a7ff;
+$section-sky: #bbe0ffb0;
+$star-color: #ffca56;
+
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+// fonts
+
+$fonts: (
+    "black": "../fonts/Poppins-Black.ttf",
+    "bold": "../fonts/Poppins-Bold.ttf",
+    "extraBold": "../fonts/Poppins-ExtraBold.ttf",
+    "light": "../fonts/Poppins-Light.ttf",
+    "medium": "../fonts/Poppins-Medium.ttf",
+    "regular": "../fonts/Poppins-Regular.ttf",
+    "semiBold": "../fonts/Poppins-SemiBold.ttf",
+    "thin": "../fonts/Poppins-Thin.ttf",
+);
+
+@each $name, $link in $fonts {
+    @font-face {
+        font-family: $name;
+        src: url("#{$link}") format("truetype");
+    }
+    .font-#{$name} {
+        font-family: $name;
+    }
+}
+
+// ------------------------------ mixing -------------------------
+@mixin resp($width) {
+    @media only screen and (min-width: $width) {
+        @content;
+    }
+}
+
+// common style
+
+@include resp($lg) {
+    .text-lg-left {
+        text-align: left !important;
+    }
+}
+
+.main__heading {
+    font-size: 2.5rem;
+    @include resp($md) {
+        font-size: 3rem;
+    }
+    @include resp($xl) {
+        font-size: 3.5rem;
+    }
+    @include resp($xxl) {
+        font-size: 4rem;
+    }
+}
+
+.list__heading {
+    text-transform: capitalize;
+    font-size: 20px;
+    @include resp($xxl) {
+        font-size: 23px;
+    }
+    li {
+        @extend .para;
+    }
+}
+
+// para
+.para {
+    @extend .font-medium;
+    font-size: 14px;
+    color: #687690;
+    @include resp($xxl) {
+        font-size: 16px;
+    }
+}
+
+.para-md {
+    @extend .para;
+    font-size: 16px;
+    @include resp($xxl) {
+        font-size: 18px;
+    }
+}
+
+.para-lg {
+    @extend .para;
+    font-size: 18px;
+    @include resp($xxl) {
+        font-size: 21px;
+    }
+}
+
+.sec-heading {
+    @extend .font-semiBold;
+    font-size: 30px;
+    @include resp($lg) {
+        font-size: 32x;
+    }
+    @include resp($xl) {
+        font-size: 35px;
+    }
+    @include resp($xxl) {
+        font-size: 37px;
+    }
+}
+
+.item-title {
+    @extend .font-semiBold;
+    font-size: 20px;
+    color: #000339;
+    @include resp($xxl) {
+        font-size: 22px;
+    }
+}
+
+.section-sky {
+    background-color: $section-sky;
+}
+// ---------------- common style  ---------------------
+//  ---- custom btn -----
+.cus__btn {
+    @extend .para;
+    text-align: center;
+    color: $btn-bg;
+    text-transform: capitalize;
+    border-radius: 10px;
+    padding: 10px 25px;
+    text-decoration: none;
+    border: 1.5px solid $btn-bg;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: white;
+        background-color: $btn-bg;
+    }
+}
+.cus__btn.active {
+    background-color: $btn-bg;
+    color: white;
+    &:hover {
+        background-color: transparent;
+        color: $btn-bg;
+        border: 1.5px solid $btn-bg;
+    }
+}
+.cus__btn__white {
+    @extend .cus__btn;
+    background-color: white !important;
+    border-color: white !important;
+    color: blue !important;
+    &:hover {
+        background-color: transparent !important;
+        color: white !important;
+    }
+}
+
+// ------ nav link  ------------
+.nav-link {
+    color: $text-bold !important;
+    border-bottom: 2px solid transparent;
+    &:hover {
+        border-bottom: 2px solid #2e2121;
+    }
+}
+.nav-link.active {
+    border-bottom: 2px solid $text-bold;
+}
+
+.b-r {
+    border-radius: 15px;
+}
+
+.list-none {
+    list-style: none;
+}
+.black-border {
+    width: 100px;
+    height: 4px;
+    border-radius: 5px;
+    background-color: black;
+}
+
+// --------------------------- sections ----------------------------
+// section style
+.section-space {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    @include resp($lg) {
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+}
+
+// main section
+#main {
+    .spacing {
+        padding-top: 85px;
+        padding-bottom: 55px;
+        @include resp($lg) {
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
+        .highlight__img {
+            max-width: 400px;
+            @include resp($md) {
+                max-width: 550px;
+            }
+            @include resp($lg) {
+                width: 90% !important;
+                max-width: initial;
+            }
+            @include resp(1600px) {
+                width: 95% !important;
+            }
+            @include resp(1850px) {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+// feature properties
+#feature {
+    .container {
+        padding-top: 125px;
+        padding-bottom: 75px;
+    }
+    .card__container {
+        padding-bottom: 75px;
+        i {
+            font-size: 20px;
+        }
+    }
+}
+
+// neighbour hood
+#neighborhood {
+    .container {
+        padding-top: 150px;
+        padding-bottom: 30px;
+        .img__sec {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            align-items: flex-start;
+
+            .details__wrap {
+                grid-column: 1/ -1;
+                grid-row: 1/ -1;
+                position: relative;
+                z-index: 500;
+                background-color: white;
+                box-shadow: 2px 2px 5px 0px #484848;
+                justify-self: flex-start;
+                // transform: translateY(-65px);
+            }
+            .img__wrap {
+                grid-column: 1/ -1;
+                grid-row: 1/ -1;
+                justify-self: flex-end;
+            }
+        }
+    }
+}
+
+// sccore section
+#score {
+    .container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+// feature pro[ery design
+#feature__property {
+    .container {
+        padding-top: 140px;
+        .row {
+            background-color: #17275f;
+        }
+
+        #mobile__svg {
+            margin-top: -75px;
+            max-width: 300px;
+            @include resp($xxl) {
+                margin-top: -125px;
+            }
+        }
+    }
+}
+
+// ---------- footer section ----------
+#footer {
+    .container {
+        padding-top: 50px;
+        @include resp($lg) {
+            padding-top: 80px;
+        }
+        @include resp($xl) {
+            padding-top: 110px;
+        }
+        .list__container {
+            h4 {
+                text-align: center;
+                @include resp($md) {
+                    text-align: left;
+                }
+            }
+            .text-md-left {
+                @include resp($md) {
+                    text-align: left !important;
+                }
+            }
+            ul {
+                padding-left: 0;
+                list-style: none;
+                li {
+                    text-align: center;
+                    a {
+                        text-align: center;
+                    }
+                    @include resp($md) {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// smooth scroll effect
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    scroll-behavior: smooth;
+    opacity: 0;
+}
+
+// aos animation
+[data-aos="x-fade-right"] {
+    opacity: 0;
+    transform: translateX(1000) translateY(1000);
+    transition-property: transform, opacity;
+    &.aos-animate {
+        opacity: 1;
+        transform: translateX(0) translateY(-65px);
+    }
+}
+
+[data-aos="width-full"] {
+    width: 0;
+    transition-property: width;
+    &.aos-animate {
+        width: 100px;
+    }
+}
